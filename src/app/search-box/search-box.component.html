@@ -1,0 +1,16 @@
+<div class="search-contarner">
+    <div class="inner-container">
+        <div 
+        class="shadow-content"
+        [textContent]="termShadow" 
+        ></div>
+
+        <div 
+        contentEditable="true" 
+        class="search-box"
+        [textContent]="term" 
+        (input)="trem=$event.target.textContent;onTermChange($event)"
+        (keydown)="onKeyDown($event)"
+        ></div>
+    </div>
+</div>
