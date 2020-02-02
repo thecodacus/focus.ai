@@ -1,12 +1,27 @@
 import { Injectable } from '@angular/core';
-import {ipcRenderer} from 'electron'
-@Injectable({
-  providedIn: 'root'
-})
-export class ElectronService {
+import { ElectronService } from 'ngx-electron';
+import { Subject } from 'rxjs';
 
-  constructor() { }
-  sendCommandToNode(command:string,data:any){
-    ipcRenderer.send(command,data)
+export enum ElectronCommand{
+  ResizeWindow="resize-window",
+  GetResults='get-results',
+  OnResults='on-results'
+}
+@Injectable({
+  providedIn:'root'
+})
+export class ElectronUIService {
+  results:Subject<any>=new Subject()
+  constructor(public electron:ElectronService) {
+    
+  }
+  public  QueryResults(term:string){
+    
+  }
+  public GetResultsStream(){
+    return this.results.asObservable()
+  }
+  OnResults(event:Electron.IpcRendererEvent,arg){
+    this.results.next(arg)
   }
 }

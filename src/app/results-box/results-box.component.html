@@ -1,0 +1,7 @@
+<div class="menuContainer">
+    <div class="menuItem" *ngFor="let result of results; index as i;" >
+        <img *ngIf="result.icon" src="result.icon" alt="">
+        <div class="title">{{result.title}}</div>
+        <div class="subtitle">{{result.subtitle}}</div>
+    </div>
+</div>

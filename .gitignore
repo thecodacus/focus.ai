@@ -44,3 +44,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Ignoring electron Plugins folder
+electron/dist/plugins/*
+electron/src/plugins/*

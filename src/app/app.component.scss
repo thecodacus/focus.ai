@@ -1,9 +1,34 @@
+
 .card {
-    width:750px;
-    height: 80px;
-    margin: 30px auto;
-    border-radius: 20px;
-    box-shadow: 2px 4px 20px 0px rgba(0, 0, 0, 0.25), -2px -3px 6px 0px rgba(0, 0, 0, 0.22);
-    cursor: pointer;
-    transition: 0.4s;
-  }
+	width:750px;
+	margin: 30px auto;
+	border-radius: 20px;
+	box-shadow: 2px 4px 20px 0px rgba(0, 0, 0, 0.25), -2px -3px 6px 0px rgba(0, 0, 0, 0.22);
+	cursor: pointer;
+	transition: 0.4s;
+	background-color: white
+}
+.result-preview{
+	border-top: solid;
+	border-color: lightgray;;
+	border-width: thin;
+	display: grid;
+	padding-right: 10px;
+	padding-left: 10px;
+	grid-template-areas: "results preview";
+	grid-template-columns: 200px auto;
+	.results{
+		grid-area: results;
+	}
+	.preview{
+		grid-area: preview;
+	}
+	height: 500px;
+	transition:200ms
+}
+.result-preview.collapsed{
+	height: 0px;
+	border-top: none;
+	overflow-y: hidden;
+	transition:200ms
+}

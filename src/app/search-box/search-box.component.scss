@@ -2,6 +2,7 @@
     width: 100%;
     border-radius: 15px;
     background-color: white;
+    height: 80px;
     .inner-container{
         display: grid;
         grid-template-areas: "searchbox";
@@ -20,6 +21,7 @@
             width: auto;
             max-height: 80px;
             white-space: nowrap;
+            cursor:text
         }
         .shadow-content{
             color: gray;

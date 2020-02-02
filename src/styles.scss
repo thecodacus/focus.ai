@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+.draggable-area{
+    -webkit-app-region: drag;
+}
+body::-webkit-scrollbar { 
+        display: none; 
+}
