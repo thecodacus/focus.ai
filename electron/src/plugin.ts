@@ -1,5 +1,5 @@
 import { Observable, Subject } from 'rxjs';
-import {map} from 'rxjs/operators'
+import  { lstatSync, readdirSync } from 'fs'
 
 export interface Preview{
     type:string,
@@ -30,8 +30,9 @@ function LoadModules():Array<CodacusPlugin>{
     let normalizedPath = require("path").join(__dirname, "plugins");
     console.log(`Loading Modules from ${normalizedPath}`);
     let plugins:Array<CodacusPlugin>=[]
-    require("fs").readdirSync(normalizedPath).forEach((file)=>{
+    readdirSync(normalizedPath).forEach((file)=>{
         try{
+            if (!lstatSync(file).isDirectory()) return;
             let plugin:CodacusPlugin=require("./plugins/" + file);
             plugin.initialize()
             plugin.id=file;

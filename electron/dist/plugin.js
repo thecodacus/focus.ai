@@ -1,12 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const rxjs_1 = require("rxjs");
+const fs_1 = require("fs");
 function LoadModules() {
     let normalizedPath = require("path").join(__dirname, "plugins");
     console.log(`Loading Modules from ${normalizedPath}`);
     let plugins = [];
-    require("fs").readdirSync(normalizedPath).forEach((file) => {
+    fs_1.readdirSync(normalizedPath).forEach((file) => {
         try {
+            if (!fs_1.lstatSync(file).isDirectory())
+                return;
             let plugin = require("./plugins/" + file);
             plugin.initialize();
             plugin.id = file;

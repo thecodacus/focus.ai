@@ -8,8 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "electron_build": "tsc electronApp.ts",
-    "electron": "electron ./electronApp.js"
+    "electron_build": "cd electron && tsc && cd ..",
+    "electron": "electron ."
   },
   "private": true,
   "dependencies": {

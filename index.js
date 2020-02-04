@@ -95,7 +95,9 @@ var reload = function () {
 };
 // hides the dock icon for our app which allows our windows to join other 
 // apps' spaces. without this our windows open on the nearest "desktop" space
-electron_1.app.dock.hide();
+if (electron_1.app.dock)
+    electron_1.app.dock.hide();
+//
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
