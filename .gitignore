@@ -47,4 +47,4 @@ Thumbs.db
 
 # Ignoring electron Plugins folder
 electron/dist/*
-electron/src/plugins/*
+#electron/src/plugins/*

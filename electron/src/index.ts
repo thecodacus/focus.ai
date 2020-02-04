@@ -1,17 +1,18 @@
 import  {app,BrowserWindow, globalShortcut, Tray, Menu} from 'electron'
-import core from './electron/dist/core'
-import { fromEvent, of, Subject, Subscription, Observable } from 'rxjs'
-import { map, switchMap, tap } from 'rxjs/operators'
+import {Core} from './core'
+import { Subject, Subscription, Observable } from 'rxjs'
+import { switchMap} from 'rxjs/operators'
 const url =require('url')
 const path =require('path')
 const { ipcMain } = require('electron')
+let core:Core=new Core()
 
 
 let mainWindow:Electron.BrowserWindow;
 let tray:Electron.Tray;
-
+let renderarPath=`${__dirname}/UI/electron-ng-app/`
 const setuptray=()=>{
-	tray = new Tray(`${__dirname}/dist/electron-ng-app/assets/codacus tray head.png`)
+	tray = new Tray(path.join(renderarPath,"/assets/codacus tray head.png"))
 	const contextMenu = Menu.buildFromTemplate([
 		{ label: 'Toggle Search bar', type: 'normal', click:toggleSearch },
 		{ type: 'separator'},
@@ -48,7 +49,7 @@ const createWindow = () => {
 	})
   
 	// and load the index.html of the app.
-	mainWindow.loadURL(`file://${__dirname}/dist/electron-ng-app/index.html`);
+	mainWindow.loadURL(`file://${renderarPath}index.html`);
 
 	// Open the DevTools.
 	//mainWindow.webContents.openDevTools();
@@ -151,7 +152,7 @@ app.on('will-quit', () => {
 let QuertResults:Subject<any>=new Subject()
 let onResponse:Observable<any>=QuertResults.pipe(
 	switchMap((arg)=>{
-		let ret:any=core(arg)
+		let ret:any=core.GetResults(arg)
 		//console.log("inside ResoOBS Switch Map",ret);
 		return ret
 	})
