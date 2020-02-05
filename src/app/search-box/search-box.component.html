@@ -1,8 +1,9 @@
 <div class="search-contarner draggable-area">
+    <img class="icon" src="assets/search-solid.svg" />
     <div class="inner-container">
         <div 
         class="shadow-content"
-        [textContent]="this.term+this.autofill" 
+        [textContent]="getAutoShadowText()" 
         ></div>
 
         <div 

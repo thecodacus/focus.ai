@@ -1,5 +1,5 @@
 <div class="card">
-  <app-search-box (termChange)="termChange.next($event)" [autofill]="autofill" ></app-search-box>
+  <app-search-box (termChange)="termChange.next($event)" [hint]="hint" [title]="searchTitle" ></app-search-box>
   <div class="result-preview collapsed" [ngClass]="{'collapsed' : !expand }">
     <app-results-box class="results" [results]="results"></app-results-box>
     <app-preview-box class="preview" 

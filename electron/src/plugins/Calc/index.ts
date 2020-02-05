@@ -1,6 +1,6 @@
-import { CodacusPlugin, PluginContext } from "../../plugin";
+import { Plugin, PluginContext } from "../../plugin";
 
-let plugin:CodacusPlugin= {
+let plugin:Plugin= {
     initialize(){
 
     },

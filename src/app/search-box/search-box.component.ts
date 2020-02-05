@@ -1,16 +1,19 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, AfterContentChecked, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, AfterContentChecked, AfterViewInit, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-search-box',
   templateUrl: './search-box.component.html',
   styleUrls: ['./search-box.component.scss']
 })
-export class SearchBoxComponent implements OnInit, AfterViewInit {
+export class SearchBoxComponent implements OnInit, AfterViewInit, OnChanges {
   @Input('term') public term = 'some text';
   @Output('termChange') public termChange:EventEmitter<string>=new EventEmitter<string>()
-  public termShadow:string="";
-  @Input('autofill') public autofill:string="test"
+  @Input('hint') public hint:string="test"
+  @Input('title') public title:string=""
   @ViewChild("editable",{static:true}) editable:ElementRef;
+
+  public autofill:string="";
+  public termShadow:string="";
   constructor() {
     this.term="";
   }
@@ -19,20 +22,35 @@ export class SearchBoxComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.editable.nativeElement.focus()
   }
+  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+  }
   onTermChange(event){
     this.term=event.target.textContent
-    this.termShadow=this.term+this.autofill
     this.termChange.emit(this.term)
   }
   onKeyDown(event){
     console.log(event);
-    if(event.code==="ArrowRight"){
+    if(event.code==="ArrowRight"&& (this.term!==""|| this.term!=undefined)){
       let sel = window.getSelection();
       if(sel.focusOffset==this.term.length){
-        event.target.textContent=this.termShadow
-        sel.collapse(event.target.firstChild, this.termShadow.length-1);
+        event.target.textContent=this.autofill
+        sel.collapse(event.target.firstChild, this.autofill.length-1);
       }
     }
+  }
+  getAutoShadowText():string{
+    this.autofill=this.term
+    if(this.term===""|| this.term==undefined)return "focus"
+    else if(this.hint&& this.hint!=""){return this.term+" "+this.hint}
+    else if(this.title.toLowerCase().startsWith(this.term.toLowerCase())){
+      let part=this.title.slice(this.term.length)
+      this.autofill=this.term+part
+      return this.autofill
+    }
+    else if(this.hint && this.hint!=""){
+      return `${this.term} - ${this.autofill}`
+    }
+    else return this.autofill
   }
 
 }

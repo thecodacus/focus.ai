@@ -3,15 +3,23 @@
     border-radius: 15px;
     background-color: white;
     height: 80px;
+    display: flex;
+    .icon{
+        height: 2rem;
+        margin: auto;
+        margin-left: 1rem;
+        padding-top: 5px;
+        opacity: 0.4;
+    }
     .inner-container{
         display: grid;
         grid-template-areas: "searchbox";
         grid-template-rows: 80px;
         grid-template-columns: repeat(auto-fit, auto);
-        margin-left: 50px;
         margin-right: 100px;
         padding:0;
         overflow: hidden;
+        width: inherit;
     
         .search-box,.shadow-content{
             grid-area: searchbox;

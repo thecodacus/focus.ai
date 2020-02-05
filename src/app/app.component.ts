@@ -11,11 +11,12 @@ import {map, tap, switchMap} from 'rxjs/operators'
 export class AppComponent {
   public title = 'electron-ng-app';
   public term:string=""
-  public autofill:string=""
+  public hint:string=""
+  public searchTitle:string=""
   public expand:boolean=false
   public termChange = new Subject<string>();
   //public results:Subject<any[]>=new Subject();
-  public results:any[]=[];
+  public results:any[]=[{title:"testing", subtitle:"testing sub", hint:"testing"},{title:"testing", subtitle:"testing sub"}];
   public arrowkeyLocation: number=0;
   
   constructor(private electron:ElectronService, private UIService:ElectronUIService){
@@ -51,7 +52,7 @@ export class AppComponent {
     .subscribe()
   }
   QueryContent(term){
-    this.electron.ipcRenderer.send(ElectronCommand.GetResults,term)
+    if (this.electron.isElectronApp)this.electron.ipcRenderer.send(ElectronCommand.GetResults,term)
   }
   UpdateContent(event:Electron.IpcRendererEvent,arg){
     console.log(arg)
@@ -80,7 +81,8 @@ export class AppComponent {
     else if (this.arrowkeyLocation>=this.results.length)this.arrowkeyLocation=this.results.length-1
   }
   updateAutoFill(result){
-    if(result.hint) this.autofill=result.hint
-    else this.autofill=""
+    if(result.hint) this.hint=result.hint
+    else this.hint=""
+    this.searchTitle=result.title
   }
 }

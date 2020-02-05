@@ -6,6 +6,7 @@ import { Observable } from 'rxjs'
 export class Core{
     private pluginManager:PluginManager
     constructor(){
+
         this.pluginManager=new PluginManager()
     }
     GetResults(term):Observable<Result[]>{

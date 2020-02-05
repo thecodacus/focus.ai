@@ -1,4 +1,22 @@
 .menuContainer{
     overflow: hidden;
     white-space: nowrap;
+    .menuItem{
+        padding: 5px;
+        padding-top: 10px;
+        width: fit-content;
+        display: flex;
+        flex-direction: row;
+        img{
+            height: 1rem;
+            display: block;
+            /* float: left; */
+            width: 1rem;
+        }
+        .title{
+            font-size: smaller;
+            span{color: gray;}
+        }
+        /* background-color: #00000040;*/
+    }
 }
