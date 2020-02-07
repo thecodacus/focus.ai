@@ -23,7 +23,6 @@ export class ResultsBoxComponent implements OnInit {
   @Input('results') public results:Result[] = [{title:"testing"}];
   @Input('selected') public selected:number = 0;
   @Output('selectedChange') public resultSelected:EventEmitter<number>=new EventEmitter<number>()
-  public arrowkeyLocation = 0;
   constructor() { }
 
   ngOnInit() {

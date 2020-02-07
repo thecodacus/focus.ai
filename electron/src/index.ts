@@ -2,6 +2,7 @@ import  {app,BrowserWindow, globalShortcut, Tray, Menu} from 'electron'
 import {Core} from './core'
 import { Subject, Subscription, Observable } from 'rxjs'
 import { switchMap} from 'rxjs/operators'
+import { Result } from './plugin'
 const url =require('url')
 const path =require('path')
 const { ipcMain } = require('electron')
@@ -182,6 +183,11 @@ function InitIPC(){
 		})
 		QuertResults.next(arg)
 		//if(responseSubsription) responseSubsription.unsubscribe()
+	})
+	ipcMain.on('on-select', (event:Electron.IpcMainEvent, arg:Result) => {
+		console.log(arg) // prints "ping"
+		core.OnSelect(arg)
+		mainWindow.hide()
 	})
 }
 InitIPC()

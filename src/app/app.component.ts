@@ -64,14 +64,20 @@ export class AppComponent {
       this.updateAutoFill(this.results[this.arrowkeyLocation])
     }
   }
-  keyDown(event: KeyboardEvent) {
+  onKeyDown(event: KeyboardEvent) {
     if(!this.results) return
-    switch (event.keyCode) {
-      case 38: // this is the ascii of arrow up
+    console.log(event);
+    
+    switch (event.code) {
+      case 'ArrowUp': // this is the ascii of arrow up
         this.arrowkeyLocation--;
         break;
-      case 40: // this is the ascii of arrow down
+      case 'ArrowDown': // this is the ascii of arrow down
         this.arrowkeyLocation++;
+        break;
+      case 'Enter': // this is the ascii of arrow down
+        this.correctSelection()
+        this.onSelect();
         break;
     }
     this.correctSelection()
@@ -84,5 +90,10 @@ export class AppComponent {
     if(result.hint) this.hint=result.hint
     else this.hint=""
     this.searchTitle=result.title
+  }
+  onSelect(){
+    if (this.electron.isElectronApp)
+      this.electron.ipcRenderer.send(ElectronCommand.OnSelect, this.results[this.arrowkeyLocation])  
+    //this.term=""
   }
 }

@@ -5,7 +5,8 @@ import { Subject } from 'rxjs';
 export enum ElectronCommand{
   ResizeWindow="resize-window",
   GetResults='get-results',
-  OnResults='on-results'
+  OnResults='on-results',
+  OnSelect="on-select"
 }
 @Injectable({
   providedIn:'root'

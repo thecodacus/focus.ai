@@ -10,6 +10,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const rxjs_1 = require("rxjs");
 const fs_1 = require("fs");
 const Path = __importStar(require("path"));
+let configDir = null;
+exports.configDir = configDir;
+let homeDir = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
+if (homeDir != null)
+    exports.configDir = configDir = Path.join(homeDir, '.focus');
 class PluginManager {
     constructor() {
         this.resultsObs = new rxjs_1.Subject();
@@ -132,6 +137,13 @@ class PluginManager {
         let json = JSON.stringify(this.pluginRankings);
         fs_1.writeFile(pluginsRanksPath, json, (err) => { if (err)
             console.log(err); });
+    }
+    OnSelect(result) {
+        let resp = this.plugins.filter((plugin) => plugin.id === result.pluginId);
+        if (resp.length <= 0)
+            return;
+        let plugin = resp[0];
+        plugin.onSelect(result);
     }
 }
 exports.PluginManager = PluginManager;

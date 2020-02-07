@@ -9,5 +9,8 @@ class Core {
         console.log("getting results from plugins");
         return this.pluginManager.GetResults(term);
     }
+    OnSelect(result) {
+        this.pluginManager.OnSelect(result);
+    }
 }
 exports.Core = Core;

@@ -15,7 +15,8 @@ export interface Result{
     subtytle?:string,
     preview?:Preview,
     hint?:string,
-    icon?:string
+    icon?:string,
+    meta?:any
 }
 
 export interface PluginContext{
@@ -24,14 +25,20 @@ export interface PluginContext{
 }
 
 export interface Plugin{
+    configuration?:any,
     initialize(),
     main(context:PluginContext),
+    onSelect(result:Result)
 }
 
 export interface TaggedPlugin extends Plugin{
     id:string
 }
 interface PluginRankItem{id:string,rank:number}
+let configDir:(string|null) =null
+let homeDir=process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE
+if(homeDir!=null) configDir=Path.join(homeDir,'.focus')
+export {configDir}
 
 export class PluginManager{
 
@@ -39,7 +46,8 @@ export class PluginManager{
     results:Result[]=[];
     plugins:Array<TaggedPlugin>
     pluginRankings:Array<PluginRankItem>=[]
-    public configDir:(string|null);
+    public configDir:(string|null)
+
     
     constructor(){
         this.plugins=[];
@@ -58,7 +66,7 @@ export class PluginManager{
         this.InitializeRanks()
     }
 
-    LoadModules(pluginPath){
+    LoadModules(pluginPath:string){
         //let normalizedPath = require("path").join(__dirname, "plugins");
         console.log(`Loading Modules from ${pluginPath}`);
         readdirSync(pluginPath).forEach((file)=>{
@@ -88,7 +96,7 @@ export class PluginManager{
         this.resultsObs.next(this.results)
     }
 
-    GetResults(term):Observable<Result[]>{
+    GetResults(term:string):Observable<Result[]>{
         this.results=[]
         this.plugins.forEach(plugin=>{
             try{
@@ -120,6 +128,7 @@ export class PluginManager{
             return aRank[0].rank-bRank[0].rank
         })
     }
+
     InitializeRanks(){
         this.pluginRankings=[]
         if(!this.configDir) return
@@ -153,6 +162,13 @@ export class PluginManager{
         })
         let json = JSON.stringify(this.pluginRankings);
         writeFile(pluginsRanksPath,json,(err)=>{if(err)console.log(err)})
+    }
+
+    OnSelect(result:Result){
+        let resp=this.plugins.filter((plugin)=>plugin.id===result.pluginId)
+        if(resp.length<=0) return;
+        let plugin=resp[0];
+        plugin.onSelect(result)
     }
     
 }

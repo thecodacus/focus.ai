@@ -28,7 +28,7 @@ export class SearchBoxComponent implements OnInit, AfterViewInit, OnChanges {
     this.term=event.target.textContent
     this.termChange.emit(this.term)
   }
-  onKeyDown(event){
+  onKeyDown(event:KeyboardEvent|any){
     console.log(event);
     if(event.code==="ArrowRight"&& (this.term!==""|| this.term!=undefined)){
       let sel = window.getSelection();
@@ -36,6 +36,18 @@ export class SearchBoxComponent implements OnInit, AfterViewInit, OnChanges {
         event.target.textContent=this.autofill
         sel.collapse(event.target.firstChild, this.autofill.length-1);
       }
+    }
+    else if(event.code==="Enter"&& this.term!=undefined){
+      event.preventDefault()
+      //this.term = this.term.split('\n').join("")
+      let range = document.createRange();
+      range.selectNodeContents(event.target);
+      let sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+    else if(event.code==="ArrowUp"||event.code==="ArrowDown"){
+      event.preventDefault()
     }
   }
   getAutoShadowText():string{

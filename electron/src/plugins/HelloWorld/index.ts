@@ -1,4 +1,4 @@
-import { Plugin, PluginContext } from "../../plugin";
+import { Plugin, PluginContext, Result } from "../../plugin";
 
 let plugin:Plugin= {
     initialize(){
@@ -11,7 +11,8 @@ let plugin:Plugin= {
                 content:`<h1>${context.term}</h1>`
             }
         }])
-    }
+    },
+    onSelect(result:Result){}
 }
 
 module.exports=plugin

@@ -1,5 +1,5 @@
 <div class="menuContainer">
-    <div class="menuItem" ngClass="{'selected':selected==i}" *ngFor="let result of results; index as i;" >
+    <div class="menuItem" [ngClass]="{'selected':selected==i}" *ngFor="let result of results; index as i;" >
         <img *ngIf="result.icon" src="result.icon" alt="">
         <div class="title">{{result.title}}<span *ngIf="result.subtitle!==undefined||result.subtitle===''"> - {{result.subtitle}}</span></div>
     </div>

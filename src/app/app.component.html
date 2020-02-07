@@ -1,7 +1,7 @@
-<div class="card">
-  <app-search-box (termChange)="termChange.next($event)" [hint]="hint" [title]="searchTitle" ></app-search-box>
+<div class="card" (keydown)="onKeyDown($event)">
+  <app-search-box (termChange)="termChange.next($event)" [term]="term" [hint]="hint" [title]="searchTitle" ></app-search-box>
   <div class="result-preview collapsed" [ngClass]="{'collapsed' : !expand }">
-    <app-results-box class="results" [results]="results"></app-results-box>
+    <app-results-box class="results" [results]="results" [selected]="arrowkeyLocation" ></app-results-box>
     <app-preview-box class="preview" 
     [content]="results[arrowkeyLocation]?.preview?.content"
     [type]="results[arrowkeyLocation]?.preview?.type"
