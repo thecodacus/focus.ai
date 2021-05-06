@@ -1,8 +1,12 @@
-## Welcome to GitHub Pages
+## Welcome to Focus AI
 
-You can use the [editor on GitHub](https://github.com/thecodacus/focus.ai/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Focus keeps you from moving to browser and search for answers and lets you focus on your actual task.
+It is an search tool which helps you to be more productive and search on topics from various sources from your current screen and applications
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+- Focus is Modeled after Mac's Spotlight
+- It is extensible via plugin
+- Anyone with javascript knowledge can write Focus plugins
+
 
 ### Markdown
 
