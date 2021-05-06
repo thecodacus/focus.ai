@@ -4,6 +4,7 @@
 	"description": "",
 	"main": ".build/index.js",
 	"scripts": {
+		"installUi": "cd ui && npm i",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"uibuild": "cd ui && ng build --base-href ./",
 		"build": "tsc",

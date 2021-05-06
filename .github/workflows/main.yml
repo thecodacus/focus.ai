@@ -2,15 +2,15 @@
 
 name: CI
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [master]
     tags:
-      - '*'
+      - "*"
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -25,23 +25,21 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
-    
+
       - name: Install Node Dependencies
         run: npm i
-      
+
       - name: Install Node Dependencies
-        run: cd ui && npm i && cd ..
+        run: npm run buildUi
 
       # Runs a single command using the runners shell
       - name: Build UI
         run: npm run uibuild
-      
+
       # Runs a single command using the runners shell
       - name: Build Electron Main
         run: npm run build
-        
+
       # Runs a single command using the runners shell
       - name: Package
         run: npm run pack
-
-  
