@@ -39,8 +39,9 @@
 	"build": {
 		"appId": "focus.ai",
 		"mac": {
-			"category": "public.app-category.developer-tools",
-			"hardenedRuntime": true
+			"category": "public.app-category.productivity",
+			"hardenedRuntime": false,
+			"target": "dmg"
 		}
 	}
 }
