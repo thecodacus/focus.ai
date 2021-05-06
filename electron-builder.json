@@ -1,0 +1,42 @@
+{
+	"appId": "focus.ai",
+	"productName": "Focus AI",
+	"files": ["package.json", ".build/**/*", "node_modules"],
+	"directories": {
+		"app": ".",
+		"output": "dist",
+		"buildResources": "build-res"
+	},
+	"dmg": {
+		"background": null,
+		"backgroundColor": "#ffffff",
+		"window": {
+			"width": "400",
+			"height": "300"
+		},
+		"contents": [
+			{
+				"x": 100,
+				"y": 100
+			},
+			{
+				"x": 300,
+				"y": 100,
+				"type": "link",
+				"path": "/Applications"
+			}
+		]
+	},
+	"mac": {
+		"category": "public.app-category.productivity",
+		"hardenedRuntime": false,
+		"target": "dmg"
+	},
+	"win": {
+		"target": "nsis"
+	},
+	"linux": {
+		"target": "AppImage",
+		"category": "Utility"
+	}
+}
