@@ -35,8 +35,9 @@ jobs:
       # Runs a single command using the runners shell
       - name: Build UI
         run: |
+          cd ui 
           npm i @angular/cli -D
-          npm run uibuild
+          npx ng build
 
       # Runs a single command using the runners shell
       - name: Build Electron Main
@@ -45,3 +46,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: Package
         run: npm run pack
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: uploading artifacts
+          path: |
+            dist
