@@ -46,6 +46,7 @@ testem.log
 Thumbs.db
 
 # Ignoring build folders
+node_modules
 dist
 .build
 .vscode

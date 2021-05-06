@@ -1,5 +1,5 @@
 {
-	"name": "focus.ai",
+	"name": "FocusAI",
 	"version": "1.0.1",
 	"description": "",
 	"main": ".build/index.js",
@@ -9,7 +9,7 @@
 		"uibuild": "cd ui && ng build --base-href ./",
 		"build": "tsc",
 		"start": "electron .",
-		"pack": "electron-builder --dir",
+		"pack": "electron-builder -mwl --dir",
 		"dist": "electron-builder",
 		"postinstall": "electron-builder install-app-deps"
 	},

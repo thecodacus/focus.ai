@@ -50,6 +50,20 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: uploading artifacts
+          name: linux artifacts
           path: |
-            dist
+            dist/linux-*
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: mac artifacts
+          path: |
+            dist/mac-*
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: windows artifacts
+          path: |
+            dist/win-*
