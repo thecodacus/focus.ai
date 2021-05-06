@@ -45,7 +45,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Package
-        run: electron-builder -m --publish never
+        run: npx electron-builder -m --publish never
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
@@ -82,7 +82,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Package
         run: |
-          electron-builder -w --publish never
+          npx electron-builder -w --publish never
           ls dist
 
       - name: Archive production artifacts
@@ -121,7 +121,7 @@ jobs:
       - name: Package
         run: |
           sudo apt-get install --no-install-recommends -y libopenjp2-tools
-          electron-builder -l --publish never
+          npx electron-builder -l --publish never
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
