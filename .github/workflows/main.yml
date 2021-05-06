@@ -35,7 +35,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Build UI
         run: |
-          npm i @angular/cli -g
+          npm i @angular/cli -D
           npm run uibuild
 
       # Runs a single command using the runners shell
