@@ -9,7 +9,7 @@
 		"uibuild": "cd ui && ng build --base-href ./",
 		"build": "tsc",
 		"start": "electron .",
-		"pack": "electron-builder -mwl --dir",
+		"pack": "electron-builder --dir",
 		"dist": "electron-builder",
 		"postinstall": "electron-builder install-app-deps"
 	},
