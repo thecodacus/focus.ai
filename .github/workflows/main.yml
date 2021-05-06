@@ -30,7 +30,7 @@ jobs:
         run: npm i
 
       - name: Install Node Dependencies
-        run: npm run buildUi
+        run: npm run installUi
 
       # Runs a single command using the runners shell
       - name: Build UI
