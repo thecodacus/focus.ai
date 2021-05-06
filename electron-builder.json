@@ -5,7 +5,7 @@
 	"directories": {
 		"app": ".",
 		"output": "dist",
-		"buildResources": "build-res"
+		"buildResources": ".build"
 	},
 	"dmg": {
 		"background": null,
